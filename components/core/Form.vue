@@ -304,7 +304,7 @@ export default {
           await this.$axios.post('/api/otp/verify/', this.user)
           this.$root.$emit('snackbar', {
             color: 'success',
-            text: this.$t('auth.enter_new')
+            text: this.$t(this.signIn ?  'auth.complete_registration' : 'password.enter_new')
           })
           this.step = 3
         } catch (error) {

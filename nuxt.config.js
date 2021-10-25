@@ -125,6 +125,7 @@ export default {
             lot_finish: 'Lot completed', // 'Лот завершен'
           },
           auth: {
+            complete_registration: 'Complete registration',
             username: 'Username',
             login: 'Login',
             password: 'Password',
@@ -238,6 +239,7 @@ export default {
             lot_finish: 'Лот завершен', // 'Лот завершен'
           },
           auth: {
+            complete_registration: 'Завершите регистрацию',
             account_free: 'Юзернейм свободен', // 'Адрес свободен',
             invalid_data: 'Данные не корректны',
             sign: 'Вход',
