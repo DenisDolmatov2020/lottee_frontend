@@ -9,9 +9,9 @@
       slide-y-reverse-transition
       style="z-index: 7"
     >
-      <template v-slot:activator>
-        <v-tooltip right>
-          <template v-slot:activator="{ on, attrs }">
+      <template #activator>
+        <v-tooltip right :color="'white'" weight="bold">
+          <template #activator="{ on, attrs }">
             <v-btn
               v-model="fab"
               color="green"
@@ -37,7 +37,7 @@
       >
         <template
           v-if="key !== $i18n.locale"
-          v-slot:activator="{ on, attrs }"
+          #activator="{ on, attrs }"
         >
           <v-btn
             v-model="fab"

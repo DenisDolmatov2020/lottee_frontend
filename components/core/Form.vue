@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="form-body">
     <CoreHeader :page="{ title: titles[$route.path], color: '#333', dark: true, update: false }" />
     <div class="user-container">
       <div class="content-w3ls">
@@ -416,15 +416,6 @@ img {
 body a:hover {
   text-decoration: none;
 }
-body {
-  background-size: cover;
-  -webkit-background-size: cover;
-  -moz-background-size: cover;
-  -o-background-size: cover;
-  -ms-background-size: cover;
-  background-attachment: fixed;
-  font-family: cursive;
-}
 .content-w3ls {
   max-width: 500px;
   margin: 0 auto;
@@ -486,11 +477,11 @@ h5 {
 }
 .checkbox input+i:after {
   content: '';
-  top: 0px;
-  left: 0px;
+  top: 0;
+  left: 0;
   width: 14px;
   height: 14px;
-  font: normal 8px/16px FontAwesome;
+  // font: normal 8px/16px 'Crimson Text';
   text-align: center;
 }
 .checkbox input+i:after,
@@ -551,7 +542,7 @@ h5 {
       border-width: 1px 1px 1px 1px;
       background: #fff;
       box-sizing: border-box;
-      font-family: cursive;
+      font-family: 'Balsamiq Sans', 'Crimson Text', sans-serif;
       width: 100%;
       outline: none;
       border-top-right-radius: 30px;

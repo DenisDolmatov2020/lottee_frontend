@@ -1,11 +1,11 @@
 <template>
   <CoreForm @request-link="$router.push('/registration')" @final-request="reset">
-    <template v-slot:header>
+    <template #header>
       <h5 @click="$router.push('/login')">
         {{ $t('auth.login') }}
       </h5>
     </template>
-    <template v-slot:footer>
+    <template #footer>
       <div
         class="forgot-password"
         @click="$router.push('/registration')"

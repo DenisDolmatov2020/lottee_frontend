@@ -51,6 +51,7 @@ export default {
     // https://go.nuxtjs.dev/content
     '@nuxt/content',
     '@nuxtjs/i18n',
+    '@nuxtjs/google-fonts'
   ],
 
   auth: {
@@ -72,6 +73,13 @@ export default {
       logout: '/login',
       callback: '/login',
       home: '/'
+    }
+  },
+
+  googleFonts: {
+    families: {
+      'Balsamiq Sans': [400, 700],
+      'Crimson Text': [400, 700]
     }
   },
 

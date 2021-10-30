@@ -40,8 +40,9 @@
       animation-fill-mode: forwards;
       transform: rotateY(40deg) rotateX(33deg) translateZ(0);
       &:after {
-        font: 38px cursive;
-        content: 'Loottee';
+        font-family: 'Crimson Text', cursive !important;
+        font-size: 38px;
+        content: 'Lottee';
         white-space: pre;
         text-align: center;
         height: 100%;

@@ -5,7 +5,7 @@
     v-model="dialog"
     max-width="600px"
   >
-    <template v-slot:activator="{ on, attrs }">
+    <template #activator="{ on, attrs }">
       <v-btn
         dark
         icon

@@ -49,7 +49,7 @@
         overlap
       >
         <v-tooltip left>
-          <template v-slot:activator="{ on, attrs }">
+          <template #activator="{ on, attrs }">
             <v-btn
               fab
               dark
