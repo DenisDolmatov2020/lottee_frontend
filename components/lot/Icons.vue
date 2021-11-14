@@ -23,7 +23,7 @@
     <v-tooltip bottom>
       <template #activator="{ on, attrs }">
         <span class="subheading mr-2 font-weight-bold indigo--text">
-          {{ lot.energy * props.x }}
+          {{ lot.energy * x }}
         </span>
         <v-icon
           color="indigo"
@@ -59,9 +59,11 @@ export default {
     lot: {
       type: Object,
       default: () => {}
+    },
+    x: {
+      type: Number,
+      default: 1
     }
   }
 }
 </script>
-
-
