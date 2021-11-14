@@ -38,7 +38,7 @@
     <v-tooltip bottom>
       <template #activator="{ on, attrs }">
         <span class="subheading font-weight-bold green--text">
-          {{ lot.free_numbers ? `${lot.players - props.lot.free_numbers}/` : '' }}{{ lot.players }}
+          {{ lot.free_numbers ? `${lot.players - lot.free_numbers}/` : '' }}{{ lot.players }}
         </span>
         <v-icon
           class="mr-1"
