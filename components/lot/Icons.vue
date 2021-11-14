@@ -15,7 +15,7 @@
           mdi-gift-outline
         </v-icon>
         <span class="subheading mr-2 font-weight-bold pink--text">
-          {{ props.lot.winners }}
+          {{ lot.winners }}
         </span>
       </template>
       <span>Призы</span>
@@ -23,7 +23,7 @@
     <v-tooltip bottom>
       <template #activator="{ on, attrs }">
         <span class="subheading mr-2 font-weight-bold indigo--text">
-          {{ props.lot.energy * props.x }}
+          {{ lot.energy * props.x }}
         </span>
         <v-icon
           color="indigo"
@@ -38,7 +38,7 @@
     <v-tooltip bottom>
       <template #activator="{ on, attrs }">
         <span class="subheading font-weight-bold green--text">
-          {{ props.lot.free_numbers ? `${props.lot.players - props.lot.free_numbers}/` : '' }}{{ props.lot.players }}
+          {{ lot.free_numbers ? `${lot.players - props.lot.free_numbers}/` : '' }}{{ lot.players }}
         </span>
         <v-icon
           class="mr-1"
