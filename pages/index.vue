@@ -1,3 +1,3 @@
-<template functional>
+<template>
   <span />
 </template>

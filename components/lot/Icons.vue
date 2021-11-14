@@ -1,4 +1,4 @@
-<template functional>
+<template>
   <v-row
     align="center"
     justify="end"
@@ -53,5 +53,15 @@
     </v-tooltip>
   </v-row>
 </template>
+<script>
+export default {
+  props: {
+    lot: {
+      type: Object,
+      default: () => {}
+    }
+  }
+}
+</script>
 
 
