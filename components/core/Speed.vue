@@ -22,12 +22,14 @@
               <v-icon v-if="fab">
                 mdi-close
               </v-icon>
+              <!--
               <v-avatar v-else-if="$auth.user.image">
                 <v-img :src="$auth.user.image" />
               </v-avatar>
               <v-icon v-else large>
                 mdi-account-circle
               </v-icon>
+              -->
             </v-btn>
           </template>
           <span>
