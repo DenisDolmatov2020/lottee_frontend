@@ -85,7 +85,7 @@ export default {
       }
     },
     initSockets () {
-      const prizeSocket = new WebSocket('ws://' + process.env.WS_URI + '/ws/prize/')
+      const prizeSocket = new WebSocket('wss://' + process.env.WS_URI + '/ws/prize/')
       prizeSocket.onmessage = ({ data }) => {
         const lot = JSON.parse(data)
         setTimeout(() =>
