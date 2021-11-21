@@ -3,9 +3,8 @@
 
     <CoreLogo />
 
-    <CoreLanguages />
-
     <CoreSpeed v-if="$auth.loggedIn" />
+
     <CoreLogged v-else />
 
     <LotList />
@@ -13,6 +12,12 @@
     <CoreDrawer v-if="drawer" />
 
     <CoreSnackbar />
+
+    <CoreLanguages />
+    <!--
+    <CoreFilter />
+    -->
+    <CoreQuestion />
 
   </v-app>
 </template>
@@ -76,13 +81,12 @@ export default {
           this.$auth.fetchUser()
         }
       } catch (error) {
-        console.error(error)
+        this.$root.$emit('snackbar', { color: 'error', text: 'Ошибка при старте трекера' })
       }
     },
     initSockets () {
       const prizeSocket = new WebSocket('ws://' + process.env.WS_URI + '/ws/prize/')
       prizeSocket.onmessage = ({ data }) => {
-        console.log('YES SOCKET')
         const lot = JSON.parse(data)
         setTimeout(() =>
             this.$root.$emit(

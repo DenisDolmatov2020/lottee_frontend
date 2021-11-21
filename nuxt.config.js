@@ -106,6 +106,13 @@ export default {
       messages: {
         en: {
           name: 'English',
+          rules: {
+            title: 'Rules and advices',
+            subjects: 'Subjects',
+            advices: 'Advices',
+            rules: 'Rules',
+            guides: 'Guides'
+          },
           error: {
             home_page: 'Home page',
             page_not_found: '404 Not Found',
@@ -223,6 +230,13 @@ export default {
         },
         ru: {
           name: 'Русский',
+          rules: {
+            title: 'Правила и подсказки',
+            subjects: 'Предметы',
+            advices: 'Советы',
+            rules: 'Правила',
+            guides: 'Руководство'
+          },
           error: {
             home_page: 'Вернуться на главную',
             page_not_found: '404 страница не найдена',
