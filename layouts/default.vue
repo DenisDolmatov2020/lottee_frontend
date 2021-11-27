@@ -88,7 +88,7 @@ export default {
       console.log('PORT LOC', window.location.port)
       const protocol = (window.location.protocol === 'https:') ? 'wss:' : 'ws:'
 
-      const wsUri = protocol + '://' + window.location.host + ':8001/'
+      const wsUri = protocol + '://' + window.location.host
       const prizeSocket = new WebSocket(wsUri || process.env.WS_URI + '/ws/prize/')
 
       prizeSocket.onmessage = ({ data }) => {
