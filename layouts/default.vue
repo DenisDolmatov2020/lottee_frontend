@@ -85,7 +85,14 @@ export default {
       }
     },
     initSockets () {
-      const prizeSocket = new WebSocket(process.env.WS_URI + '/ws/prize/')
+      let protocol = "ws:"
+      if (window.location.protocol === "https:") {
+        protocol = "wss:"
+      }
+
+      const wsUri = protocol + '://' + window.location.host + ":8001/"
+      const prizeSocket = new WebSocket(wsUri || process.env.WS_URI + '/ws/prize/')
+
       prizeSocket.onmessage = ({ data }) => {
         const lot = JSON.parse(data)
         setTimeout(() =>
@@ -102,6 +109,7 @@ export default {
           lot.winners = you
           this.$auth.fetchUser()
         }
+
         lot.winners.forEach(item => { text += ' #' + item.num })
 
         setTimeout(() =>
