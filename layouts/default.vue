@@ -85,12 +85,10 @@ export default {
       }
     },
     initSockets () {
-      let protocol = "ws:"
-      if (window.location.protocol === "https:") {
-        protocol = "wss:"
-      }
+      console.log('PORT LOC', window.location.port)
+      const protocol = (window.location.protocol === 'https:') ? 'wss:' : 'ws:'
 
-      const wsUri = protocol + '://' + window.location.host + ":8001/"
+      const wsUri = protocol + '://' + window.location.host + ':8001/'
       const prizeSocket = new WebSocket(wsUri || process.env.WS_URI + '/ws/prize/')
 
       prizeSocket.onmessage = ({ data }) => {
