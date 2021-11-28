@@ -87,7 +87,7 @@ export default {
     initSockets () {
       const protocol = (window.location.protocol === 'https:') ? 'wss' : 'ws'
 
-      const wsUri = protocol + '://' + '127.0.0.1:8000'
+      const wsUri = protocol + '://' + 'lottee.ru'
       const prizeSocket = new WebSocket(wsUri + '/ws/prize/')
 
       prizeSocket.onmessage = ({ data }) => {
