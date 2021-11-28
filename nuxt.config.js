@@ -136,7 +136,7 @@ export default {
             comment: 'Comment',
             repost: 'Repost',
             winners: 'Winners', // Победитель {{ lot.wins.length === 1 ? 'ь' : 'и' }}
-            take_number: 'Take number', // Взять номер
+            take_ticket: 'Take ticker', // Взять номер
             free: 'Free numbers', // Свободно
             lot_finish: 'Lot completed', // 'Лот завершен'
           },
@@ -257,7 +257,7 @@ export default {
             comment: 'Комментарий',
             repost: 'Репост',
             winners: 'Победители', // Победитель {{ lot.wins.length === 1 ? 'ь' : 'и' }}
-            take_number: 'Взять номер', //  Взять номер
+            take_ticket: 'Взять билет', //  Взять номер
             free: 'Свободно', // Свободно
             lot_finish: 'Лот завершен', // 'Лот завершен'
           },
@@ -376,7 +376,7 @@ export default {
             comment: 'Bình luận',
             repost: 'Repost',
             winners: 'Winners', // Победитель {{ lot.wins.length === 1 ? 'ь' : 'и' }}
-            take_number: 'Take number', //  Взять номер
+            take_ticket: 'Take ticket', //  Взять номер
             your_number: 'Your number', // 'Ваш номер'
             free: 'Miễn phí', // Свободно
             lot_finish: 'Lot completed', // 'Лот завершен'

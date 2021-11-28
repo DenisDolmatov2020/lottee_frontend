@@ -208,7 +208,7 @@
       class="btn btn-entry btn-lot"
       @click="reserve()"
     >
-      {{ $t('detail.take_number') }}
+      {{ $t('detail.take_ticket') }}
     </button>
   </div>
 </template>
@@ -247,7 +247,7 @@ export default {
       try {
         const response = await this.$axios.patch('/api/number/update/', { lot_id: this.lot.id })
         this.$root.$emit('snackbar', {
-          text: response.status === 200 ? `Ваш номер #${response.data}` : 'Вам не удалось взять номер',
+          text: response.status === 200 ? `Ваш номер #${response.data}` : 'Вам не удалось взять билет',
           color: response.status === 200 ? 'success' : 'error'
         })
         this.$auth.fetchUser()
