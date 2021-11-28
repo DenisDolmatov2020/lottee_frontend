@@ -252,6 +252,7 @@ export default {
           detail: {
             lot: 'Лот',
             condition: 'Условия',
+            completed: 'завершен',
             subscribe: 'Подписка',
             like: 'Лайк',
             comment: 'Комментарий',
@@ -335,6 +336,7 @@ export default {
             changed: 'Пароль изменен'
           },
           prize: {
+            new_message: "Номера | Вы выиграли с номером | Вы выиграли с номерами",
             title: 'Подарки',
             message_1: 'Вы выиграли',
             message_2: 'номер',
