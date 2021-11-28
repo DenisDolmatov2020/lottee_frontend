@@ -256,6 +256,7 @@ export default {
             like: 'Лайк',
             comment: 'Комментарий',
             repost: 'Репост',
+            you_won: 'Вы выиграли',
             winners: 'Победители', // Победитель {{ lot.wins.length === 1 ? 'ь' : 'и' }}
             take_ticket: 'Взять билет', //  Взять номер
             free: 'Свободно', // Свободно
