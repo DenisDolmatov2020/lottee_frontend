@@ -24,7 +24,9 @@
       <v-row class="pl-4 grey--text">
         {{ lot.title }}
         <v-spacer />
-        <LotIcons :lot="lot" :x="2 ** userNumbers.length" />
+        <v-row align="end">
+          <LotIcons :lot="lot" :x="2 ** userNumbers.length" />
+        </v-row>
       </v-row>
     </v-card-title>
 
@@ -38,6 +40,7 @@
       v-if="lot.user"
       :company="lot.user"
       :user-company="$auth.loggedIn && $auth.user.id === lot.user.id"
+      :use-link="true"
     />
 
     <div v-else-if="!lot.active && lot.wins">
@@ -85,7 +88,7 @@
       </v-card>
     </div>
 
-    <v-divider class="mx-4" />
+    <v-divider class="my-4" />
 
     <v-card v-if="lot.active && lot.condition">
       <v-card-title>
@@ -200,7 +203,7 @@
 
     <v-spacer />
 
-    <v-divider class="mx-4" />
+    <v-divider class="my-4" />
 
     <button
       v-if="$auth.loggedIn && $auth.user.id !== lot.user.id && lot.active"

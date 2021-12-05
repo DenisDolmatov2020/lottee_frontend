@@ -1,5 +1,5 @@
 <template>
-  <v-app id="main">
+  <v-app id="main" @click.native="clicking">
 
     <CoreLogo />
 
@@ -54,6 +54,11 @@ export default {
     this.timer = null
   },
   methods: {
+    clicking (event) {
+      if (event.target._prevClass === 'v-overlay__scrim') {
+        this.$router.push('/')
+      }
+    },
     ...mapMutations(['SET_TRACKER']),
     ...mapActions(['fetchLots', 'fetchNumbers', 'fetchPrizes']),
     initLottee () {

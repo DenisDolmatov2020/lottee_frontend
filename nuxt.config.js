@@ -91,10 +91,6 @@ export default {
         domain: '127.0.0.1:8000/en'
       },
       {
-        code: 'vn',
-        domain: 'vn.127.0.0.1:8000'
-      },
-      {
         code: 'ru',
         domain: '127.0.0.1:8000/ru'
       }
@@ -106,6 +102,7 @@ export default {
       messages: {
         en: {
           name: 'English',
+          'Change Language': 'Поменять язык',
           rules: {
             title: 'Rules and advices',
             subjects: 'Subjects',
@@ -357,6 +354,8 @@ export default {
             logout: 'Выйти'
           }
         },
+
+        /*
         vn: {
           name: 'Viet Nam',
           error: {
@@ -471,6 +470,7 @@ export default {
             logout: 'Đăng xuất'
           }
         }
+        */
       }
     }
   },

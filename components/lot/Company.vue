@@ -25,7 +25,23 @@
         </v-icon>
       </v-list-item-avatar>
       <v-spacer />
-      {{ userLot ? 'Ваш лот' : company.name }}
+      <div v-if="!useLink">
+        {{ userLot ? 'Ваш лот' : company.name }}
+      </div>
+      <v-tooltip v-else left>
+        <template #activator="{ on, attrs }">
+          <v-btn
+            dark
+            text
+            v-bind="attrs"
+            v-on="on"
+            @click.prevent="toLink"
+          >
+            {{ userLot ? 'Ваш лот' : company.name }}
+          </v-btn>
+        </template>
+        <span>Перейти на сайт компании</span>
+      </v-tooltip>
     </v-card-title>
   </v-card>
 </template>
@@ -39,6 +55,15 @@ export default {
     userLot: {
       type: Boolean,
       default: false
+    },
+    useLink: {
+      type: Boolean,
+      default: false
+    }
+  },
+  methods: {
+    toLink () {
+      window.location.href = this.company.url;
     }
   }
 }

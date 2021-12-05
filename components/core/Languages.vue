@@ -10,7 +10,7 @@
       style="z-index: 7"
     >
       <template #activator>
-        <v-tooltip right :color="'white'" weight="bold">
+        <v-tooltip right weight="bold">
           <template #activator="{ on, attrs }">
             <v-btn
               v-model="fab"
@@ -27,7 +27,7 @@
               </v-avatar>
             </v-btn>
           </template>
-          <span>{{ $t('name') }}</span>
+          <span>{{ $t('Change Language') }}</span>
         </v-tooltip>
       </template>
       <v-tooltip
