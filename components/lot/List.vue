@@ -1,8 +1,8 @@
 <template>
   <v-row>
     <v-col
-      v-for="(lot, i) in lots"
-      :key="i"
+      v-for="lot in lots"
+      :key="`lot_id_${lot.id}`"
       lg="4"
       md="6"
       cols="12"

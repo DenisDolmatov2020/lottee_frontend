@@ -7,16 +7,22 @@
 
     <CoreLogged v-else />
 
+    <!--
     <LotList />
+    -->
+
+    <ShopList />
 
     <CoreDrawer v-if="drawer" />
 
     <CoreSnackbar />
 
     <CoreLanguages />
+
     <!--
     <CoreFilter />
     -->
+
     <CoreQuestion />
 
   </v-app>
