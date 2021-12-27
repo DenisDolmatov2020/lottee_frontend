@@ -19,8 +19,8 @@
       </v-btn>
     </template>
     <span>
-        {{ String($t('rules.title')) }}
-      </span>
+      {{ String($t('rules.title')) }}
+    </span>
   </v-tooltip>
 </template>
 <style scoped>
