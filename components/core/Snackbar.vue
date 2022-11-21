@@ -51,7 +51,22 @@ export default {
     text: '',
     lot_id: null
   }),
+
   created () {
+    this.$store.subscribe((mutation, state) => {
+      if (mutation.type === 'tracker/SET_TRACKER' && mutation.payload.status === 201) {
+        this.color = 'indigo'
+        this.icon = 'mdi-flash'
+        this.title = `+${mutation.payload.data.days_row < 8 ? mutation.payload.data.days_row : 7} к энергии`
+        this.timeout = 7000
+        this.text = `Получен ежедневный бонус за
+              ${mutation.payload.data.days_row}
+              ${mutation.payload.data.days_row === 1 ? 'день' : mutation.payload.data.days_row < 5 ? 'дня' : 'дней'}
+              посещения подряд`
+        this.snackbar = true
+      }
+    })
+
     this.$root.$on('snackbar', payload => {
       this.timeout = payload.timeout || 3500
       this.color = payload.color || 'primary'
@@ -62,6 +77,7 @@ export default {
       this.snackbar = true
     })
   },
+
   methods: {
     clickButton () {
       if (this.lot_id) {

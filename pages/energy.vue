@@ -55,7 +55,7 @@ export default {
     }
   },
   computed: {
-    ...mapState(['tracker'])
+    ...mapState('tracker', ['tracker'])
   },
   created () {
     setInterval(this.getNow, 1000)

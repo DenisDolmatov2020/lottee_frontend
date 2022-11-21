@@ -482,11 +482,11 @@ export default {
   },
   proxy: {
     '/api': {
-      target: process.env.API_URI || 'http://127.0.0.1:8000' + '/api', // 'http://api.lottee.online/' + 'api',
+      target: process.env.API_URI || 'http://127.0.0.1:8000', // 'http://api.lottee.online/' + 'api',
       secure: false
     },
     '/media': {
-      target: process.env.API_URI || 'http://127.0.0.1:8000' + '/api', // 'http://api.lottee.online/' + 'media',
+      target: process.env.API_URI || 'http://127.0.0.1:8000', // 'http://api.lottee.online/' + 'media',
       secure: false
     }
   },

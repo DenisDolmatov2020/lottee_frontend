@@ -42,7 +42,7 @@
         :value="button.content"
         :content="String(button.content)"
         :color="button.color"
-        :left="!!(index % 2)"
+        :left="Boolean(index % 2)"
         bordered
         inline
         tile
@@ -69,29 +69,35 @@
   </div>
 </template>
 <script>
+import { mapState } from 'vuex';
+
 export default {
   data () {
     return {
       fab: true
     }
   },
+
   computed: {
+    ...mapState('prize', ['prizes']),
+
     buttons () {
       return [
         { content: false, color: 'green', url: '/profile', icon: 'cog', text: this.$t('profile.title') },
-        { content: this.$store.state.prizes.length, color: 'pink', url: '/prize', icon: 'gift', text: this.$t('speed.won_prizes') },
+        { content: this.prizes.length, color: 'pink', url: '/prize', icon: 'gift', text: this.$t('speed.won_prizes') },
         { content: this.$auth.user.energy, color: 'indigo', url: '/energy', icon: 'flash', text: this.$t('energy.title') },
         { content: false, color: 'red', url: null, icon: 'door', text: this.$t('speed.logout') }
       ]
     }
   },
+
   methods: {
     drawer (url) {
       if (url) {
         this.$router.push(url)
       } else {
         this.$auth.logout()
-        this.$root.$emit('snackbar', { color: 'primary', text: 'Вы вышли из профиля' })
+        this.$root.$emit('snackbar', { color: 'primary', text: this.$t('auth.logout') })
       }
     }
   }

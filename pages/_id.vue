@@ -221,22 +221,29 @@ import {mapState, mapActions} from 'vuex'
 
 export default {
   name: 'Detail',
+
   data () {
     return {
       lot: null
     }
   },
+
   computed: {
-    ...mapState(['numbers']),
+    ...mapState('number', ['numbers']),
+
     userNumbers () {
       return this.$auth.loggedIn ? this.numbers.filter(number => number.lot === this.lot.id) : []
     }
   },
+
   created () {
     this.fetchLot()
   },
+
   methods: {
-    ...mapActions(['fetchLots', 'fetchNumbers']),
+    ...mapActions('lot', ['fetchLots']),
+    ...mapActions('number', ['fetchNumbers']),
+
     async fetchLot () {
       try {
         const { data } = await this.$axios.get('/api/lot/' + this.$route.params.id)
@@ -246,6 +253,7 @@ export default {
         this.$router.push('/')
       }
     },
+
     async reserve() {
       try {
         const response = await this.$axios.patch('/api/number/update/', { lot_id: this.lot.id })
@@ -253,10 +261,13 @@ export default {
           text: response.status === 200 ? `Ваш номер #${response.data}` : 'Вам не удалось взять билет',
           color: response.status === 200 ? 'success' : 'error'
         })
-        this.$auth.fetchUser()
-        this.fetchNumbers()
-        this.fetchLot()
-        this.fetchLots()
+        await Promise.all([
+          this.$auth.fetchUser(),
+          this.fetchNumbers(),
+          this.fetchLot(),
+          this.fetchLots()
+        ])
+
       } catch (error) {
         this.$root.$emit('snackbar', { icon: 'mdi-flash', color: 'error', text: 'Недостаточно энергии' })
       }

@@ -23,7 +23,8 @@ import {mapState} from 'vuex';
 
 export default {
   computed: {
-    ...mapState(['lots', 'numbers'])
+    ...mapState('lot', ['lots']),
+    ...mapState('number', ['numbers'])
   },
   methods: {
     userNumbers (lot) {

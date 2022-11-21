@@ -29,32 +29,37 @@
 </template>
 
 <script>
-import {mapMutations, mapActions} from "vuex";
+import {mapActions} from 'vuex';
 
 
 export default {
   name: 'Default',
+
   data () {
     return {
       timer: null
     }
   },
+
   computed: {
     drawer () {
       return this.$route.path !== '/'
     }
   },
+
   created () {
     this.initLottee()
     this.timer = setInterval(() => {
       if (this.$auth.loggedIn) {
-        this.tracker()
+        this.fetchTracker()
       }
-    }, 60 * 60 * 1000) // каждую минуту
+    }, 60 * 60 * 1000) // every minute save progress
   },
+
   mounted () {
     this.initSockets()
   },
+
   beforeDestroy () {
     clearInterval(this.timer)
     this.timer = null
@@ -65,8 +70,12 @@ export default {
         this.$router.push('/')
       }
     },
-    ...mapMutations(['SET_TRACKER']),
-    ...mapActions(['fetchLots', 'fetchNumbers', 'fetchPrizes']),
+
+    ...mapActions('tracker', ['fetchTracker']),
+    ...mapActions('lot', ['fetchLots']),
+    ...mapActions('number', ['fetchNumbers']),
+    ...mapActions('prize', ['fetchPrizes']),
+
     initLottee () {
       Promise.all([
         this.fetchLots(),
@@ -74,27 +83,7 @@ export default {
         this.fetchPrizes()
       ])
     },
-    async tracker () {
-      try {
-        const response = await this.$axios.get('/api/tracker')
-        this.SET_TRACKER(response.data)
-        if (response.status === 201) {
-          this.$root.$emit('snackbar', {
-            color: 'indigo',
-            icon: 'mdi-flash',
-            title: `+${response.data.days_row < 8 ? response.data.days_row : 7} к энергии`,
-            timeout: 7000,
-            text: `Получен ежедневный бонус за
-                ${response.data.days_row}
-                ${response.data.days_row === 1 ? 'день' : response.data.days_row < 5 ? 'дня' : 'дней'}
-                посещения подряд`
-          })
-          this.$auth.fetchUser()
-        }
-      } catch (error) {
-        this.$root.$emit('snackbar', { color: 'error', text: 'Ошибка при старте трекера' })
-      }
-    },
+
     initSockets () {
       const protocol = (window.location.protocol === 'https:') ? 'wss' : 'ws'
 

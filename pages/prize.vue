@@ -27,13 +27,14 @@
 </template>
 
 <script>
-import {mapState} from "vuex";
+import { mapState } from 'vuex';
 
 export default {
   name: 'Prize',
   middleware: ['auth'],
+
   computed: {
-    ...mapState(['prizes'])
+    ...mapState('prize', ['prizes'])
   }
 }
 </script>
