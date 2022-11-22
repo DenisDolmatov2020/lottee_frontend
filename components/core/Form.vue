@@ -1,6 +1,7 @@
 <template>
   <div class="form-body">
     <CoreHeader :page="{ title: titles[$route.path], color: '#333', dark: true, update: false }" />
+
     <div class="user-container">
       <div class="content-w3ls">
         <div class="content-bottom">
@@ -26,6 +27,7 @@
             </h2>
             <slot name="header" />
           </div>
+
           <div class="field-group">
             <div class="field-group-icons">
               <img
@@ -41,6 +43,7 @@
                 :src="require('assets/icons/email.svg')"
               >
             </div>
+
             <div class="wthree-field">
               <input
                 v-model="user.identifier"
@@ -61,6 +64,7 @@
                 :src="require('assets/icons/gr_code_scan.svg')"
               >
             </div>
+
             <div class="wthree-field">
               <input
                 v-model="user.code"
@@ -72,6 +76,7 @@
               >
             </div>
           </div>
+
           <div
             v-if="step === 3 && signIn"
             class="field-group"
@@ -91,6 +96,7 @@
               >
             </div>
           </div>
+
           <div
             v-if="step === 3 || logIn"
             class="field-group"
@@ -111,6 +117,7 @@
               >
             </div>
           </div>
+
           <div
             v-if="step === 3"
             class="field-group"
@@ -131,6 +138,7 @@
               >
             </div>
           </div>
+
           <div
             v-if="step === 3 || logIn"
             class="field-group-2"
@@ -143,6 +151,7 @@
               </label>
             </div>
           </div>
+
           <button
             type="button"
             class="btn btn-entry"
@@ -150,6 +159,7 @@
           >
             {{ buttonTitle }}
           </button>
+
           <div class="pages-bottom">
             <slot name="footer" />
             <div
@@ -165,6 +175,7 @@
     </div>
   </div>
 </template>
+
 <script>
 export default {
   data () {
@@ -189,6 +200,7 @@ export default {
       reg_phone: /^[+]?[(]?[0-9]{3}[)]?[-\s.]?[0-9]{3}[-\s.]?[0-9]{4,6}$/im
     }
   },
+
   computed: {
     isValueValid () {
       if (this.user.identifier) {
@@ -200,12 +212,15 @@ export default {
       }
       return 0
     },
+
     signIn () {
       return this.$route.path === '/registration'
     },
+
     logIn () {
       return this.$route.path === '/login'
     },
+
     buttonTitle () {
       return this.step === 3 || this.logIn ? this.titles[this.$route.path] :
         this.step === 2 ? this.$t('auth.send_code') : this.$t('auth.get_code')
@@ -215,6 +230,7 @@ export default {
     requestLink () {
       this.step === 2 ? this.getOTP() : this.$emit('request-link')
     },
+
     requests () {
       if (this.logIn) {
         this.login()
@@ -231,6 +247,7 @@ export default {
         this.getOTP()
       }
     },
+
     async login () {
       if (this.isValueValid) {
         try {
@@ -268,8 +285,8 @@ export default {
       }
       return false
     },
+    */
 
-     */
     timerStart () {
       this.timer = process.env.timerTime
       this.timer_interval = setInterval(() => {
@@ -282,6 +299,7 @@ export default {
         }
       }, 1000)
     },
+
     async getOTP () {
       try {
         await this.$axios.post('/api/otp/', this.user)
@@ -298,6 +316,7 @@ export default {
         })
       }
     },
+
     async sentOTP () {
       if (this.user.code) {
         try {

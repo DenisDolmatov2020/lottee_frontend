@@ -1,14 +1,17 @@
-<template>
+<template functional>
   <v-navigation-drawer
-    :value="$route.name !== 'index'"
+    :value="parent.$route.path !== '/'"
     right
     fixed
-    temporary
     width="480"
     floating
-    permanent
   >
     <nuxt />
   </v-navigation-drawer>
 </template>
 
+<style>
+.v-navigation-drawer {
+  z-index: 8;
+}
+</style>

@@ -1,5 +1,5 @@
 <template>
-  <CoreForm @request-link="$router.push('/registration')" @final-request="reset">
+  <CoreForm @request-link="$router.replace('/registration')" @final-request="reset">
     <template #header>
       <h5 @click="$router.push('/login')">
         {{ $t('auth.login') }}
@@ -8,7 +8,7 @@
     <template #footer>
       <div
         class="forgot-password"
-        @click="$router.push('/registration')"
+        @click="$router.replace('/registration')"
       >
         {{ $t('auth.registration')  }}
       </div>
@@ -22,7 +22,7 @@ export default {
       try {
         await this.$axios.patch('/api/my-user/reset-password/', user)
         this.$root.$emit('snackbar', { color: 'primary', text: this.$t('password.changed') })
-        this.$router.push('/')
+        this.$router.replace('/')
       } catch (error) {
         this.$root.$emit('snackbar', { color: 'error', text: this.$t('auth.no_have_user') })
       }

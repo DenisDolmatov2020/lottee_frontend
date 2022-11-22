@@ -1,4 +1,4 @@
-<template>
+<template functional>
   <v-tooltip
     left
     fixed
@@ -11,7 +11,7 @@
         class="btn-no-auth"
         v-bind="attrs"
         v-on="on"
-        @click="$router.push('/rules')"
+        @click="parent.$router.push('/rules')"
       >
         <v-icon large>
           mdi-progress-question
@@ -19,15 +19,15 @@
       </v-btn>
     </template>
     <span>
-      {{ String($t('rules.title')) }}
+      {{ String(parent.$t('rules.title')) }}
     </span>
   </v-tooltip>
 </template>
 <style scoped>
-.btn-no-auth {
-  position: fixed;
-  z-index: 1;
-  bottom: 16px;
-  right: 16px;
-}
+  .btn-no-auth {
+    position: fixed;
+    z-index: 1;
+    bottom: 16px;
+    right: 16px;
+  }
 </style>

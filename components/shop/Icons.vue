@@ -1,4 +1,4 @@
-<template>
+<template functional>
   <v-row
     align="center"
     justify="end"
@@ -15,7 +15,7 @@
           mdi-clock
         </v-icon>
         <span class="subheading mr-2 font-weight-bold green--text">
-          {{ shop.wait_cash_days_average }} d.
+          {{ props.shop.wait_cash_days_average }} d.
         </span>
       </template>
       <span>Cash Back Average</span>
@@ -23,7 +23,7 @@
     <v-tooltip bottom>
       <template #activator="{ on, attrs }">
         <span class="subheading mr-2 font-weight-bold indigo--text">
-          {{ shop.wait_cash_days_maximum }} d.
+          {{ props.shop.wait_cash_days_maximum }} d.
         </span>
         <v-icon
           color="indigo"
@@ -33,17 +33,7 @@
           mdi-update
         </v-icon>
       </template>
-      <span>Cash Back Maximum</span>
+      <span>{{ $t('cashback') + ' ' + $t('maximal') }}</span>
     </v-tooltip>
   </v-row>
 </template>
-<script>
-export default {
-  props: {
-    shop: {
-      type: Object,
-      default: () => {}
-    }
-  }
-}
-</script>

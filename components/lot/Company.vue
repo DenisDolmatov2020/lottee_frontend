@@ -24,11 +24,10 @@
           mdi-camera
         </v-icon>
       </v-list-item-avatar>
+
       <v-spacer />
-      <div v-if="!useLink">
-        {{ userLot ? 'Ваш лот' : company.name }}
-      </div>
-      <v-tooltip v-else left>
+
+      <v-tooltip v-if="useLink && company.url" left>
         <template #activator="{ on, attrs }">
           <v-btn
             dark
@@ -42,9 +41,13 @@
         </template>
         <span>Перейти на сайт компании</span>
       </v-tooltip>
+      <div v-else>
+        {{ userLot ? 'Ваш лот' : company.name }}
+      </div>
     </v-card-title>
   </v-card>
 </template>
+
 <script>
 export default {
   props: {
@@ -52,10 +55,12 @@ export default {
       type: Object,
       default: () => {}
     },
+
     userLot: {
       type: Boolean,
       default: false
     },
+
     useLink: {
       type: Boolean,
       default: false
@@ -63,7 +68,8 @@ export default {
   },
   methods: {
     toLink () {
-      window.location.href = this.company.url;
+      console.log('TO LINK', this.company)
+      // window.location.href = this.company.url;
     }
   }
 }

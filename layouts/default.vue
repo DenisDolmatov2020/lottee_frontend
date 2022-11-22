@@ -7,21 +7,13 @@
 
     <CoreLogged v-else />
 
-    <!--
-    <LotList />
-    -->
+    <CoreList :items="items" :component-name="componentName" />
 
-    <ShopList />
-
-    <CoreDrawer v-if="drawer" />
+    <CoreDrawer />
 
     <CoreSnackbar />
 
     <CoreLanguages />
-
-    <!--
-    <CoreFilter />
-    -->
 
     <CoreQuestion />
 
@@ -29,7 +21,7 @@
 </template>
 
 <script>
-import {mapActions} from 'vuex';
+import {mapActions, mapState} from 'vuex';
 
 
 export default {
@@ -37,13 +29,21 @@ export default {
 
   data () {
     return {
-      timer: null
+      timer: null,
+      isShops: false
     }
   },
 
   computed: {
-    drawer () {
-      return this.$route.path !== '/'
+    ...mapState('shop', ['shops']),
+    ...mapState('lot', ['lots']),
+
+    componentName () {
+      return this.isShops ? 'ShopCard' : 'LotCard'
+    },
+
+    items () {
+      return this.isShops ? this.shops : this.lots
     }
   },
 
@@ -73,12 +73,14 @@ export default {
 
     ...mapActions('tracker', ['fetchTracker']),
     ...mapActions('lot', ['fetchLots']),
+    ...mapActions('shop', ['fetchShops']),
     ...mapActions('number', ['fetchNumbers']),
     ...mapActions('prize', ['fetchPrizes']),
 
     initLottee () {
       Promise.all([
         this.fetchLots(),
+        this.fetchShops(),
         this.fetchNumbers(),
         this.fetchPrizes()
       ])
@@ -87,7 +89,7 @@ export default {
     initSockets () {
       const protocol = (window.location.protocol === 'https:') ? 'wss' : 'ws'
 
-      const wsUri = protocol + '://' + 'lottee.ru'
+      const wsUri = protocol + '://' + window.location.host
       const prizeSocket = new WebSocket(wsUri + '/ws/prize/')
 
       prizeSocket.onmessage = ({ data }) => {

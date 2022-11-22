@@ -102,7 +102,10 @@ export default {
       messages: {
         en: {
           name: 'English',
-          'Change Language': 'Поменять язык',
+          'Change Language': 'Change language',
+          cashback: 'cashback',
+          maximal: 'Maximal cashback',
+
           rules: {
             title: 'Rules and advices',
             subjects: 'Subjects',
@@ -120,7 +123,8 @@ export default {
             name: 'Name',
             cancel: 'Cancel',
             save: 'Saving',
-            address_delivery: 'Address delivery'
+            address_delivery: 'Address delivery',
+            'phone number': 'Phone number'
           },
           detail: {
             lot: 'Lot',
@@ -225,8 +229,12 @@ export default {
             logout: 'Logout'
           }
         },
+
         ru: {
           name: 'Русский',
+          'Change Language': 'Поменять язык',
+          cashback: 'Кешбэк',
+          maximal: 'Максимальный  кешбэк',
           rules: {
             title: 'Правила и подсказки',
             subjects: 'Предметы',
@@ -244,7 +252,8 @@ export default {
             avatar: 'Аватар',
             name: 'Имя',
             cancel: 'Отменить',
-            save: 'Сохранить'
+            save: 'Сохранить',
+            'phone number': 'Номер телефона'
           },
           detail: {
             lot: 'Лот',

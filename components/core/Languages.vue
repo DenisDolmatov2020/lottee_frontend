@@ -1,7 +1,6 @@
-<template>
+<template functional>
   <div id="create">
     <v-speed-dial
-      v-model="fab"
       fixed
       bottom
       left
@@ -13,7 +12,7 @@
         <v-tooltip right weight="bold">
           <template #activator="{ on, attrs }">
             <v-btn
-              v-model="fab"
+              v-model="props.fab"
               color="green"
               dark
               fab
@@ -22,30 +21,31 @@
             >
               <v-avatar>
                 <v-img
-                  :src="require(`~/assets/images/${$i18n.locale}.png`)"
+                  :src="require(`~/assets/images/${parent.$i18n.locale}.png`)"
                 />
               </v-avatar>
             </v-btn>
           </template>
-          <span>{{ $t('Change Language') }}</span>
+          <span>{{ parent.$t('Change Language') }}</span>
         </v-tooltip>
       </template>
+
       <v-tooltip
-        v-for="(value, key) in $i18n.messages"
+        v-for="(value, key) in parent.$i18n.messages"
         :key="key"
         right
       >
         <template
-          v-if="key !== $i18n.locale"
+          v-if="key !== parent.$i18n.locale"
           #activator="{ on, attrs }"
         >
           <v-btn
-            v-model="fab"
+            v-model="props.fab"
             dark
             fab
             v-bind="attrs"
             v-on="on"
-            @click="$i18n.locale = key"
+            @click="parent.$i18n.locale = key"
           >
             <v-avatar>
               <v-img :src="require(`~/assets/images/${key}.png`)" />
@@ -57,10 +57,3 @@
     </v-speed-dial>
   </div>
 </template>
-<script>
-export default {
-  data: () => ({
-    fab: false
-  })
-}
-</script>

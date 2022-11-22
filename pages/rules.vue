@@ -1,6 +1,6 @@
 <template>
   <div>
-    <CoreHeader :page="{ title: $t('rules.title'), color: 'orange darken-1', dark: true, update: false }" />
+    <CoreHeader :page="page" />
     <v-expansion-panels v-if="loaded" focusable>
       <v-expansion-panel
         v-for="(value, key) in items"
@@ -33,13 +33,16 @@
 export default {
   data () {
     return {
+      page: { title: this.$t('rules.title'), color: 'orange darken-1', dark: true, update: false },
       loaded: false,
       items: {}
     }
   },
-  created() {
+
+  created () {
     this.setItems()
   },
+
   methods: {
     async setItems () {
       const items = await this.$axios.$get('/api/rules')
@@ -47,6 +50,7 @@ export default {
         if (!this.items[item.type]) this.items[item.type] = []
         this.items[item.type].push(item)
       })
+
       this.loaded = true
     }
   }

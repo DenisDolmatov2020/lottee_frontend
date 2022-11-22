@@ -6,22 +6,24 @@
         width="400"
         :elevation="hover ? 24 : 3"
         shaped
-        @click="$router.push(`/${lot.id}`)"
+        @click="$router.push(`/${item.id}`)"
       >
+
         <LotCompany
-          :company="lot.user"
+          :company="item.user"
           :user-lot="userLot"
         />
+
         <v-card-text class="pt-0">
           <div class="d-flex flex-no-wrap justify-space-between">
             <div class="title font-weight-light mb-2">
               <v-card-title
                 class="headline"
-                v-text="lot.title"
+                v-text="item.title"
               />
               <v-card-subtitle
                 class="subheading font-weight-light grey--text"
-                v-text="lot.description"
+                v-text="item.description"
               />
             </div>
 
@@ -32,15 +34,17 @@
               color="grey lighten-1"
             >
               <v-img
-                v-if="lot.images && lot.images.length"
-                :src="lot.images[0].url"
+                v-if="item.images && item.images.length"
+                :src="item.images[0].url"
               />
               <v-icon v-else>
                 mdi-camera
               </v-icon>
             </v-avatar>
           </div>
+
           <v-divider :class="['my-2', userNumbers.length || userLot ? 'green' : 'blue']" />
+
           <v-row
             no-gutters
             :class="userLot ? 'pa-4' : ''"
@@ -53,28 +57,38 @@
                 X{{ 2 ** userNumbers.length }}
               </span>
             </span>
-            <LotIcons :lot="lot" :x="2 ** userNumbers.length" />
+
+            <LotIcons :lot="item" :x="2 ** userNumbers.length" />
           </v-row>
         </v-card-text>
       </v-card>
     </template>
   </v-hover>
 </template>
+
 <script>
+import {mapState} from 'vuex'
+
+
 export default {
   props: {
-    lot: {
+    item: {
       type: Object,
-      default: null
-    },
-    userNumbers: {
-      type: Array,
-      default: () => []
-    },
-    userLot: {
-      type: Boolean,
-      default: false
+      default: () => {}
     }
-  }
+  },
+
+  computed: {
+    ...mapState('lot', ['lots']),
+    ...mapState('number', ['numbers']),
+
+    userNumbers () {
+      return this.$auth.loggedIn ? this.numbers.filter(number => number.lot === this.item.id) : []
+    },
+
+    userLot () {
+      return this.$auth.loggedIn && this.item.user.id === this.$auth.user.id
+    }
+  },
 }
 </script>

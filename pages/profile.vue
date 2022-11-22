@@ -1,6 +1,57 @@
 <template>
   <div>
-    <CoreHeader :page="page" />
+    <CoreHeader :page="page">
+      <CoreModal v-if="my_profile" @dialog-submit="updateUser">
+        <v-row>
+          <v-file-input
+            v-model="user.image"
+            :label="$t('modal.avatar')"
+            prepend-icon="mdi-camera"
+          />
+
+          <v-col
+            cols="12"
+            md="6"
+          >
+            <v-text-field
+              v-model="user.name"
+              :label="$t('modal.name')"
+            />
+          </v-col>
+          <v-col
+            cols="12"
+            md="6"
+          >
+            <v-text-field
+              v-model="user.email"
+              label="Email"
+              required
+            />
+          </v-col>
+          <v-col
+            cols="12"
+            md="6"
+          >
+            <v-text-field
+              v-model="user.phone"
+              :label="$t('modal.phone number')"
+              required
+            />
+          </v-col>
+          <v-col
+            cols="12"
+            md="6"
+          >
+            <v-text-field
+              v-model="user.address"
+              :label="$t('modal.address_delivery')"
+              required
+            />
+          </v-col>
+        </v-row>
+      </CoreModal>
+    </CoreHeader>
+
     <v-img height="100%">
       <v-row
         align="end"
@@ -31,7 +82,7 @@
             v-if="my_profile"
             type="button"
             class="btn btn-entry btn-lot"
-            @click="$router.push('/password')"
+            @click="$router.replace('/password')"
           >
             {{ $t('profile.button') }}
           </button>
@@ -122,18 +173,57 @@
 <script>
 export default {
   middleware: 'auth',
+
+  data () {
+    return {
+      user: { ...this.$auth.user, image: null }
+    }
+  },
+
   computed: {
     profile () {
       return this.$route.params.user || this.$auth.user
     },
+
     my_profile () {
       return this.profile.id === this.$auth.user.id
     },
+
     page () {
       if (this.my_profile) {
         return { title: this.$t('profile.title'), color: 'green lighten-1', dark: true, update: true }
       } else {
         return { title: `${this.$t('profile.user')} ${this.profile.name}`, color: 'blue', dark: true, update: false }
+      }
+    }
+  },
+
+  methods: {
+    async updateUser () {
+      const user = this.user
+      const formData = new FormData()
+      const keys = Object.keys(user)
+      keys.forEach(key => {
+        if (user[key] && (key !== 'image' || key === 'image' && typeof user[key] === 'object')) {
+          formData.append(key, user[key])
+        }
+      })
+      formData.getAll('image')
+      try {
+        const response = await this.$axios.patch(
+          '/api/my-user/',
+          formData,
+          {
+            headers: {
+              'Content-Type': 'multipart/form-data'
+            }
+          })
+        if (response.status === 200) {
+          this.$root.$emit('snackbar', { color: 'success', text: 'Изменения профиля сохранены' })
+          await this.$auth.fetchUser()
+        }
+      } catch (error) {
+        this.$root.$emit('snackbar', { color: 'error', text: 'Ошибка при обновлении профиля' })
       }
     }
   }
